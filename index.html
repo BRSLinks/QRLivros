@@ -97,7 +97,7 @@
 
   <header>
     <h1>Livro da Semana</h1>
-    <p class="subtitulo">Uma leitura transformadora, toda semana.</p>
+    <p class="subtitulo">Uma leitura transformadora, todo dia.</p>
   </header>
 
   <section class="livro">
@@ -121,11 +121,20 @@
       link: "https://amzn.to/40mg2ZX"
     };
 
+    // Preencher os elementos com os dados
     document.getElementById("livroLink").href = livroDia.link;
     document.getElementById("livroImagem").src = livroDia.imagem;
     document.getElementById("livroTitulo").innerText = livroDia.titulo;
     document.getElementById("livroDescricao").innerText = livroDia.descricao;
     document.getElementById("livroBotao").href = livroDia.link;
+
+    // Redirecionar ao clicar em qualquer lugar (exceto em links)
+    document.body.addEventListener("click", function(e) {
+      const isLink = e.target.closest("a");
+      if (!isLink) {
+        window.open(livroDia.link, "_blank");
+      }
+    });
   </script>
 
 </body>
