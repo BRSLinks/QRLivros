@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Livro do Dia</title>
+  <title>QRlinkes – Livro do Dia</title>
   <style>
     body {
       margin: 0;
@@ -86,31 +86,6 @@
       background-color: #cc7a00;
     }
 
-    .whatsapp {
-      margin-top: 40px;
-    }
-
-    .anteriores {
-      margin: 50px 0;
-    }
-
-    .anteriores h3 {
-      margin-bottom: 10px;
-    }
-
-    .miniaturas {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .miniaturas img {
-      width: 90px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
     footer {
       margin: 60px 20px 20px;
       font-size: 0.85rem;
@@ -121,8 +96,8 @@
 <body>
 
   <header>
-    <h1>Livro do Dia</h1>
-    <p class="subtitulo">Uma leitura transformadora, todo dia.</p>
+    <h1>Livro da Semana</h1>
+    <p class="subtitulo">Uma leitura transformadora, toda semana.</p>
   </header>
 
   <section class="livro">
@@ -134,25 +109,11 @@
     <a id="livroBotao" class="botao" target="_blank">Ler agora</a>
   </section>
 
-  <section class="whatsapp">
-    <p>🌟 Entre na Lista VIP e descubra um livro incrível toda semana!</p>
-    <a class="botao" href="https://wa.me/11971407288?text=Quero%20entrar%20na%20lista%20VIP%20de%20livros" target="_blank">Quero meu livro da semana</a>
-  </section>
-
-  <section class="anteriores">
-    <h3>📚 Sugestões Anteriores</h3>
-    <div class="miniaturas" id="anterioresContainer">
-      <!-- Os livros anteriores serão inseridos aqui via script -->
-    </div>
-  </section>
-
   <footer>
     Ao comprar por aqui, você apoia meu trabalho como curador de livros. Obrigado! 📖
   </footer>
 
   <script>
-    // 🔧 DADOS PARA FACILITAR A EDIÇÃO
-
     const livroDia = {
       titulo: "As coisas que você só vê quando desacelera",
       descricao: "Como manter a calma em um mundo frenético.",
@@ -160,42 +121,12 @@
       link: "https://amzn.to/40mg2ZX"
     };
 
-    const anteriores = [
-      {
-        imagem: "https://m.media-amazon.com/images/I/713GIPU1lpL._SL1500_.jpg",
-        link: "https://amzn.to/3IdFL0o"
-      },
-      {
-        imagem: "https://m.media-amazon.com/images/I/81n0U7HAfVL._SL1500_.jpg",
-        link: "https://amzn.to/43ZTctE"
-      },
-      {
-        imagem: "https://m.media-amazon.com/images/I/81ehvI03NYS._SL1500_.jpg",
-        link: "https://amzn.to/4k9s8wG"
-      }
-    ];
-
-    // 🔄 Preenche o livro do dia
     document.getElementById("livroLink").href = livroDia.link;
     document.getElementById("livroImagem").src = livroDia.imagem;
     document.getElementById("livroTitulo").innerText = livroDia.titulo;
     document.getElementById("livroDescricao").innerText = livroDia.descricao;
     document.getElementById("livroBotao").href = livroDia.link;
-
-    // 📚 Preenche os livros anteriores
-    const container = document.getElementById("anterioresContainer");
-    anteriores.forEach(livro => {
-      const a = document.createElement("a");
-      a.href = livro.link;
-      a.target = "_blank";
-
-      const img = document.createElement("img");
-      img.src = livro.imagem;
-      img.alt = "Livro anterior";
-
-      a.appendChild(img);
-      container.appendChild(a);
-    });
   </script>
+
 </body>
 </html>
