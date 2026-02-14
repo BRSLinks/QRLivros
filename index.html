@@ -3,99 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oferta da Semana</title>
-
+  <title>Redirecionando…</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #333;
-      text-align: center;
-    }
-
-    header {
-      padding: 30px 20px 10px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    p.subtitulo {
-      font-size: 1rem;
-      color: #777;
-      margin-bottom: 30px;
-    }
-
-    .livro {
-      padding: 10px;
-    }
-
-    .livro img {
-      width: 160px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .livro h2 {
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-    }
-
-    .livro p {
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    #mensagem {
-      font-size: 1rem;
-      font-weight: bold;
-      margin-top: 20px;
-      color: #444;
-    }
-
-    footer {
-      margin: 60px 20px 20px;
-      font-size: 0.85rem;
-      color: #aaa;
+    body { margin:0; font-family:Segoe UI, sans-serif; background:#fff; color:#333; text-align:center; }
+    header { padding: 28px 18px 8px; }
+    h1 { font-size: 1.6rem; margin: 0 0 8px; }
+    p { color:#666; margin: 0 0 16px; }
+    .box { padding: 14px; }
+    .hint { font-size: .95rem; color:#777; }
+    .btn {
+      display:inline-block; margin-top:14px;
+      background:#ff9900; color:#fff; text-decoration:none;
+      padding:12px 18px; border-radius:999px; font-weight:700;
     }
   </style>
 </head>
-
 <body>
-
   <header>
-    <h1>Oferta Especial Shopee 🔥</h1>
-    <p class="subtitulo">Você será direcionado automaticamente...</p>
+    <h1>Preparando seu acesso…</h1>
+    <p>Vamos abrir o produto na Shopee e depois te levar ao cardápio.</p>
   </header>
 
-  <section class="livro">
-    <img 
-      src="https://static.vecteezy.com/system/resources/previews/020/190/516/original/loading-icon-animation-free-vector.jpg"
-      alt="Carregando">
+  <div class="box">
+    <p id="status" class="hint">⏳ Abrindo Shopee em 2 segundos…</p>
 
-    <h2>Preparando sua vitrine...</h2>
-    <p>Aguarde só 2 segundos 😈</p>
-
-    <p id="mensagem">⏳ Redirecionando...</p>
-  </section>
-
-  <footer>
-    Obrigado por apoiar meu trabalho como curador de ofertas 🛒
-  </footer>
+    <!-- fallback caso algum navegador bloqueie algo -->
+    <a id="btnShopee" class="btn" href="#" rel="noopener">Abrir Shopee agora</a>
+    <br/>
+    <a id="btnCardapio" class="btn" href="#" style="background:#222; margin-left:8px;">Ir para o cardápio</a>
+  </div>
 
   <script>
-    // ✅ Link Shopee destino atualizado
-    const destino = "https://s.shopee.com.br/9pYqUIGHzn";
+    // ✅ 1) Coloque aqui seus links
+    const SHOPEE_URL   = "https://s.shopee.com.br/9pYqUIGHzn";
+    const CARDAPIO_URL = "https://SEU-CARDAPIO-AQUI.com"; // <-- TROQUE AQUI
 
-    // ✅ Redirecionar automaticamente após 2 segundos
+    // ✅ 2) Configurações
+    const ABRIR_SHOPEE_EM_MS = 2000;   // 2 segundos
+    const CHAVE_FLAG = "fluxo_shopee_aberto";
+
+    // Fallback botões
+    document.getElementById("btnShopee").href = SHOPEE_URL;
+    document.getElementById("btnCardapio").href = CARDAPIO_URL;
+
+    const statusEl = document.getElementById("status");
+
+    // Marca que vamos abrir a Shopee
+    localStorage.setItem(CHAVE_FLAG, "0");
+
+    // Abre Shopee automaticamente na mesma aba
     setTimeout(() => {
-      window.location.replace(destino);
-    }, 2000);
-  </script>
+      statusEl.textContent = "✅ Abrindo Shopee… (quando voltar, você irá para o cardápio)";
+      localStorage.setItem(CHAVE_FLAG, "1");
+      window.location.href = SHOPEE_URL; // mesma aba
+    }, ABRIR_SHOPEE_EM_MS);
 
+    // ✅ Quando o usuário VOLTAR para essa página (ex.: botão voltar / fechar app),
+    // detecta e manda para o cardápio.
+    function tentarIrCardapio() {
+      const abriu = localStorage.getItem(CHAVE_FLAG) === "1";
+      if (abriu) {
+        // evita loop
+        localStorage.setItem(CHAVE_FLAG, "2");
+        window.location.replace(CARDAPIO_URL);
+      }
+    }
+
+    // Detecta retorno ao foco/visibilidade
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) tentarIrCardapio();
+    });
+
+    window.addEventListener("focus", tentarIrCardapio);
+
+    // Em alguns celulares, voltar histórico dispara pageshow
+    window.addEventListener("pageshow", tentarIrCardapio);
+  </script>
 </body>
 </html>
