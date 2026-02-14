@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Livro da Semana</title>
+  <title>Oferta da Semana</title>
 
   <style>
     body {
@@ -34,8 +34,8 @@
     }
 
     .livro img {
-      width: 180px;
-      border-radius: 8px;
+      width: 160px;
+      border-radius: 10px;
       margin-bottom: 15px;
     }
 
@@ -50,31 +50,11 @@
       margin-bottom: 20px;
     }
 
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255,153,0, 0.7);
-      }
-      70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 10px rgba(255,153,0, 0);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255,153,0, 0);
-      }
-    }
-
-    .botao {
-      display: inline-block;
-      background-color: #ff9900;
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 30px;
-      text-decoration: none;
+    #mensagem {
+      font-size: 1rem;
       font-weight: bold;
-      font-size: 1.1rem;
-      animation: pulse 2s infinite;
+      margin-top: 20px;
+      color: #444;
     }
 
     footer {
@@ -82,30 +62,23 @@
       font-size: 0.85rem;
       color: #aaa;
     }
-
-    /* Mensagem de carregamento */
-    #mensagem {
-      font-size: 1rem;
-      font-weight: bold;
-      margin-top: 20px;
-      color: #444;
-    }
   </style>
 </head>
 
 <body>
 
   <header>
-    <h1>Oferta da Semana</h1>
+    <h1>Oferta Especial Shopee 🔥</h1>
     <p class="subtitulo">Você será direcionado automaticamente...</p>
   </header>
 
   <section class="livro">
-    <img src="https://static.vecteezy.com/system/resources/previews/020/190/516/original/loading-icon-animation-free-vector.jpg"
-         alt="Carregando">
+    <img 
+      src="https://static.vecteezy.com/system/resources/previews/020/190/516/original/loading-icon-animation-free-vector.jpg"
+      alt="Carregando">
 
-    <h2>Preparando sua vitrine Shopee 🔥</h2>
-    <p>Aguarde só 3 segundos...</p>
+    <h2>Preparando sua vitrine...</h2>
+    <p>Aguarde só 2 segundos 😈</p>
 
     <p id="mensagem">⏳ Redirecionando...</p>
   </section>
@@ -115,13 +88,13 @@
   </footer>
 
   <script>
-    // ✅ Link Shopee destino
-    const destino = "https://collshp.com/j5afxtabarato?view=storefront";
+    // ✅ Link Shopee destino atualizado
+    const destino = "https://s.shopee.com.br/9pYqUIGHzn";
 
-    // ✅ Redirecionar automaticamente após 3 segundos
+    // ✅ Redirecionar automaticamente após 2 segundos
     setTimeout(() => {
       window.location.replace(destino);
-    }, 3000);
+    }, 2000);
   </script>
 
 </body>
