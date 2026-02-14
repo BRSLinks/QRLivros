@@ -33,15 +33,10 @@
       padding: 10px;
     }
 
-    .livro a img {
+    .livro img {
       width: 180px;
       border-radius: 8px;
       margin-bottom: 15px;
-      transition: transform 0.3s;
-    }
-
-    .livro a img:hover {
-      transform: scale(1.03);
     }
 
     .livro h2 {
@@ -80,11 +75,6 @@
       font-weight: bold;
       font-size: 1.1rem;
       animation: pulse 2s infinite;
-      transition: background-color 0.3s ease;
-    }
-
-    .botao:hover {
-      background-color: #cc7a00;
     }
 
     footer {
@@ -93,11 +83,12 @@
       color: #aaa;
     }
 
+    /* Mensagem de carregamento */
     #mensagem {
-      margin-top: 20px;
       font-size: 1rem;
-      color: #444;
       font-weight: bold;
+      margin-top: 20px;
+      color: #444;
     }
   </style>
 </head>
@@ -105,73 +96,32 @@
 <body>
 
   <header>
-    <h1>Livro da Semana</h1>
-    <p class="subtitulo">Uma leitura transformadora, toda semana.</p>
+    <h1>Oferta da Semana</h1>
+    <p class="subtitulo">Você será direcionado automaticamente...</p>
   </header>
 
   <section class="livro">
-    <a id="livroLink" target="_blank">
-      <img id="livroImagem" alt="Livro do Dia">
-    </a>
+    <img src="https://static.vecteezy.com/system/resources/previews/020/190/516/original/loading-icon-animation-free-vector.jpg"
+         alt="Carregando">
 
-    <h2 id="livroTitulo"></h2>
-    <p id="livroDescricao"></p>
+    <h2>Preparando sua vitrine Shopee 🔥</h2>
+    <p>Aguarde só 3 segundos...</p>
 
-    <a id="livroBotao" class="botao" target="_blank">Ver oferta agora</a>
-
-    <p id="mensagem">
-      👉 Clique em qualquer lugar para abrir automaticamente em 3s...
-    </p>
+    <p id="mensagem">⏳ Redirecionando...</p>
   </section>
 
   <footer>
-    Ao comprar por aqui, você apoia meu trabalho como curador de ofertas. Obrigado! 🛒
+    Obrigado por apoiar meu trabalho como curador de ofertas 🛒
   </footer>
 
   <script>
-    const livroDia = {
-      titulo: "Oferta Especial Shopee",
-      descricao: "Abrindo vitrine promocional em instantes...",
-      imagem: "https://m.media-amazon.com/images/I/61F6T1at-nL._SL1367_.jpg",
+    // ✅ Link Shopee destino
+    const destino = "https://collshp.com/j5afxtabarato?view=storefront";
 
-      // ✅ Link atualizado
-      link: "https://collshp.com/j5afxtabarato?view=storefront"
-    };
-
-    // Preencher os dados
-    document.getElementById("livroLink").href = livroDia.link;
-    document.getElementById("livroImagem").src = livroDia.imagem;
-    document.getElementById("livroTitulo").innerText = livroDia.titulo;
-    document.getElementById("livroDescricao").innerText = livroDia.descricao;
-    document.getElementById("livroBotao").href = livroDia.link;
-
-    let ativado = false;
-
-    // ✅ Após clique, abre Shopee em nova aba depois de 3 segundos
-    document.body.addEventListener("click", function () {
-
-      if (ativado) return;
-      ativado = true;
-
-      let segundos = 3;
-      const msg = document.getElementById("mensagem");
-
-      msg.innerText = `⏳ Abrindo em ${segundos} segundos...`;
-
-      const contador = setInterval(() => {
-        segundos--;
-        msg.innerText = `⏳ Abrindo em ${segundos} segundos...`;
-
-        if (segundos <= 0) {
-          clearInterval(contador);
-
-          // ✅ Abre em outra aba
-          window.open(livroDia.link, "_blank");
-
-          msg.innerText = "✅ Oferta aberta! Aproveite 🔥";
-        }
-      }, 1000);
-    });
+    // ✅ Redirecionar automaticamente após 3 segundos
+    setTimeout(() => {
+      window.location.replace(destino);
+    }, 3000);
   </script>
 
 </body>
