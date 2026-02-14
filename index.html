@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Livro da Semana</title>
+
   <style>
     body {
       margin: 0;
@@ -91,8 +92,16 @@
       font-size: 0.85rem;
       color: #aaa;
     }
+
+    #mensagem {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #444;
+      font-weight: bold;
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -104,36 +113,64 @@
     <a id="livroLink" target="_blank">
       <img id="livroImagem" alt="Livro do Dia">
     </a>
+
     <h2 id="livroTitulo"></h2>
     <p id="livroDescricao"></p>
-    <a id="livroBotao" class="botao" target="_blank">Ler agora</a>
+
+    <a id="livroBotao" class="botao" target="_blank">Ver oferta agora</a>
+
+    <p id="mensagem">
+      👉 Clique em qualquer lugar para abrir automaticamente em 3s...
+    </p>
   </section>
 
   <footer>
-    Ao comprar por aqui, você apoia meu trabalho como curador de livros. Obrigado! 📖
+    Ao comprar por aqui, você apoia meu trabalho como curador de ofertas. Obrigado! 🛒
   </footer>
 
   <script>
     const livroDia = {
-      titulo: "As coisas que você só vê quando desacelera",
-      descricao: "Como manter a calma em um mundo frenético.",
+      titulo: "Oferta Especial Shopee",
+      descricao: "Abrindo vitrine promocional em instantes...",
       imagem: "https://m.media-amazon.com/images/I/61F6T1at-nL._SL1367_.jpg",
-      link: "https://amzn.to/40mg2ZX"
+
+      // ✅ Link atualizado
+      link: "https://collshp.com/j5afxtabarato?view=storefront"
     };
 
-    // Preencher os elementos com os dados
+    // Preencher os dados
     document.getElementById("livroLink").href = livroDia.link;
     document.getElementById("livroImagem").src = livroDia.imagem;
     document.getElementById("livroTitulo").innerText = livroDia.titulo;
     document.getElementById("livroDescricao").innerText = livroDia.descricao;
     document.getElementById("livroBotao").href = livroDia.link;
 
-    // Redirecionar ao clicar em qualquer lugar (exceto em links)
-    document.body.addEventListener("click", function(e) {
-      const isLink = e.target.closest("a");
-      if (!isLink) {
-        window.open(livroDia.link, "_blank");
-      }
+    let ativado = false;
+
+    // ✅ Após clique, abre Shopee em nova aba depois de 3 segundos
+    document.body.addEventListener("click", function () {
+
+      if (ativado) return;
+      ativado = true;
+
+      let segundos = 3;
+      const msg = document.getElementById("mensagem");
+
+      msg.innerText = `⏳ Abrindo em ${segundos} segundos...`;
+
+      const contador = setInterval(() => {
+        segundos--;
+        msg.innerText = `⏳ Abrindo em ${segundos} segundos...`;
+
+        if (segundos <= 0) {
+          clearInterval(contador);
+
+          // ✅ Abre em outra aba
+          window.open(livroDia.link, "_blank");
+
+          msg.innerText = "✅ Oferta aberta! Aproveite 🔥";
+        }
+      }, 1000);
     });
   </script>
 
